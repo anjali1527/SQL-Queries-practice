@@ -1,0 +1,57 @@
+USE EMPLOYEE_DB;
+
+#Find employees earning above the company-wide average salary.
+SELECT EMPLOYEES.FIRST_NAME, EMPLOYEES.LAST_NAME 
+FROM EMPLOYEES 
+WHERE SALARY > ( SELECT AVG(SALARY) FROM EMPLOYEES);
+
+#Find the employee(s) with the highest salary.
+SELECT EMPLOYEES.FIRST_NAME, EMPLOYEES.LAST_NAME , EMPLOYEES.SALARY
+FROM EMPLOYEES 
+WHERE SALARY = ( SELECT MAX(SALARY) FROM EMPLOYEES);
+
+#Find the employee(s) with the lowest salary.
+SELECT EMPLOYEES.FIRST_NAME, EMPLOYEES.LAST_NAME , EMPLOYEES.SALARY
+FROM EMPLOYEES 
+WHERE SALARY = ( SELECT MIN(SALARY) FROM EMPLOYEES);
+
+# Find employees who work in the IT department using a subquery.
+SELECT * 
+FROM EMPLOYEES WHERE DEPARTMENT_ID IN
+  (SELECT DEPARTMENT_ID
+  FROM DEPARTMENTS
+  WHERE DEPARTMENT_NAME = 'IT');
+  
+#Find employees earning more than Rahul.
+SELECT EMPLOYEES.FIRST_NAME,EMPLOYEES.LAST_NAME FROM EMPLOYEES
+WHERE SALARY>
+(SELECT SALARY  FROM EMPLOYEES 
+WHERE EMPLOYEES.FIRST_NAME='RAHUL');
+
+#Find products priced above the average product price.
+USE ECOMMERCE_DB;
+SELECT PRODUCT_NAME, PRICE FROM PRODUCTS
+WHERE PRICE>(
+   SELECT AVG(PRICE) FROM PRODUCTS
+   );
+   
+#Find the most expensive product using a subquery.
+SELECT * FROM PRODUCTS
+WHERE PRICE = (
+	SELECT MAX(PRICE) FROM PRODUCTS);
+
+#Find customers who have placed at least one order using a subquery.
+SELECT * FROM CUSTOMERS 
+     WHERE CUSTOMER_ID IN (
+	SELECT CUSTOMER_ID FROM ORDERS );
+    
+#Find customers who have never placed an order using NOT EXISTS or an equivalent subquery.
+SELECT * FROM CUSTOMERS C 
+    WHERE NOT EXISTS 
+    (SELECT 1 
+    FROM ORDERS O 
+    WHERE O.CUSTOMER_ID=C.CUSTOMER_ID );
+    
+SELECT * FROM CUSTOMERS
+WHERE CUSTOMER_ID NOT IN (
+    SELECT CUSTOMER_ID FROM orders);
