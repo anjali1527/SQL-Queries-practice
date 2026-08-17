@@ -4,18 +4,6 @@ A collection of SQL queries and practice problems solved using **MySQL**.
 
 This repository contains hands-on SQL practice covering fundamental to advanced concepts. The queries are written and tested using MySQL.
 
----
-
-## 📌 About
-
-This repository is created to practice SQL through different types of problems and real-world database scenarios.
-
-The focus is on understanding SQL concepts, writing queries, working with relational data, and improving problem-solving skills.
-
-The repository will be continuously updated with new problems and concepts.
-
----
-
 ## 🛠️ Tools & Technologies
 
 - MySQL
